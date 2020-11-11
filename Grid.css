@@ -1,0 +1,40 @@
+body{
+    background-color: rgb(227, 235, 235);
+}
+
+.grid-container{
+    display: grid;
+grid-template-areas: 
+'header header header header header '
+'navigationBar main main main main'
+'navigationBar main main main main'
+'footer footer footer footer footer'
+;
+
+grid-gap: 30px;
+padding: 15px;
+font-size: 25px;
+    
+}
+
+.header{ 
+    grid-area: header;
+    font-size: 100px;
+    background-color: lightpink;
+}
+
+.navigationBar{ 
+    grid-area: navigationBar;
+    background-color: lightslategray;
+}
+
+.main{
+    grid-area: main;
+
+}
+
+.footer{
+    grid-area: footer;
+    background-color: lemonchiffon;
+    font-size: 15px;
+}
