@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title>Tehila Biton CV</title>
+        <p id="P1">Hello</p>
+        <script>
+            document.getElementById("P1").innerHTML="Welcome to my site"
+        </script>
+    </head>
+    <body>
+        <p id="P2"></p>
+        <p id="P3"> Random Text</p>
+        <img id="luckyNumImg" src="C:\Users\Tehila Biton\Desktop\לימודים\שנה ד\ווב\Git\Hello-World_TehilaBiton\imgicon.jpg" style = "width: 100px;">
+        <script> 
+            function functionA(x){
+                if (x==2)
+                return ("2 is my lucky number too!")
+                else 
+                return("Want to know what my lucky number is? Click on the button")
+            }
+            document.getElementById("P2").innerHTML=functionA(10)
+
+            function functionB(){
+
+                document.getElementById("P3").innerHTML="This text is changed"
+            }
+        </script>
+        <button type="button" onclick="functionB()"> Change Text</button>
+        <button onclick="document.getElementById('luckyNumImg').src = 'C:\Users\Tehila Biton\Desktop\לימודים\שנה ד\ווב\Git\Hello-World_TehilaBiton\img10.jfif‬‬‬'" > Find Out </button>
+        
+        
+</body>
+</html>
