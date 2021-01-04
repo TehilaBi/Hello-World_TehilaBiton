@@ -19,10 +19,12 @@
             <div class="text1">
                 <p>
                     {% if name %}
-                        <h3>Hello {{ name}}</h3>
+                        <h3>Hello {{ name}}!</h3>
                     {% else %}
-                        <h3>Hello Stranger</h3>
+                        <h3>Hello Stranger!</h3>
                     {% endif %}
+
+                    <h3> I'm glad you want to hear more about me </h3>
                 </p>
             </div>
 
@@ -30,19 +32,22 @@
                 <img src={{url_for('static', filename='IMG/hobbies.png')}} width=400px>
             </div>
             <div class="text2">
-                        <ul>
-                             {% for hobby  in hobbies%}
-                                <li><h2>{{ hobby }}</h2></li>
-                             {% endfor %}
-                        </ul>
+                <h3> In my free time, I like to do a lot of things:  </h3>
+                    <ul>
+                        {% for hobby  in hobbies%}
+                            <li><h3>{{ hobby }}</h3></li>
+                        {% endfor %}
+                    </ul>
             </div>
+            <div class="img3">
+                <img src={{url_for('static', filename='IMG/bread.jpg')}} width=400px>
+            </div>
+            <div class="text3">
+                {% block other  %}
+                    {% include('Baking.html') %}
+                 {% endblock %}
 
-
+            </div>
         </div>
-        {% block other  %}
-            {% include('Contact List.html') %}
-        {% endblock %}
-
-
-    </body>
+  </body>
 </html>

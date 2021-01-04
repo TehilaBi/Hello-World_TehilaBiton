@@ -35,8 +35,8 @@ def hobbies():
                            hobbies=['Sport', 'Baking', 'travel'])
 
 
-@app.route('/Block')
-def block():
+@app.route('/Tips for Bread')
+def tips():
     nameMe = 'Tehila'
     return render_template('block.html', name=nameMe,
                            hobbies=['Sport', 'Baking', 'travel'])
