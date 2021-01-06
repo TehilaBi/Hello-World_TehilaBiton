@@ -5,7 +5,7 @@ from flask import request, session
 
 app = Flask(__name__)
 app.secret_key = '123'
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
 
 
 @app.route('/')
@@ -47,7 +47,7 @@ def tips():
                            hobbies=['Sport', 'Baking', 'travel'])
 
 
-@app.route('/search-and-registration', methods=['GET', 'POST'])
+@app.route('/assignment9', methods=['GET', 'POST'])
 def assignment9():
     username = ''
     loggedIn = ''
@@ -72,7 +72,7 @@ def assignment9():
 def Log_out():
     session.pop('username')
     session['loggedIn'] = False
-    return redirect('/search-and-registration')
+    return redirect('/assignment9')
 
 if __name__ == '__main__':
     app.run(debug=True)

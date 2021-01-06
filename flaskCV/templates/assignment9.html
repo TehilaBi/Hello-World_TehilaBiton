@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="grid-container">
-        <form action="/search-and-registration" method="get">
+        <form action="/assignment9" method="get">
             <h1> Search </h1>
             <br>
             <label for="name"><b>Name: </b></label>
@@ -30,7 +30,7 @@
          {%  if session.loggedIn %}
                     <h2> Hello, {{ username }} </h2>
          {% else %}
-             <form action="/search-and-registration" method="post">
+             <form action="/assignment9" method="post">
                  <h1> Registration</h1>
                  <label for="username"><b>Name: </b></label>
                  <input type="text" placeholder="Enter your name"  name="username" required>
