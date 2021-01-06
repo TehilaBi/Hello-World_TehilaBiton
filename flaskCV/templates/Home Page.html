@@ -13,6 +13,13 @@
         
         <div class="grid-container">
             <div class="textMe">
+
+                {%  if session.loggedIn %}
+                    <h1> Hello, {{ session.get('username') }}</h1>
+                {% else %}
+                    <h1> Hello, Stranger</h1>
+                {% endif %}
+
                 <h1> Hi, I'm Tehila Biton</h1>
                 <p>
                     Fourth-year B.Sc. student for Industrial Engineering (Information Systems major) at Ben-Gurion University. 

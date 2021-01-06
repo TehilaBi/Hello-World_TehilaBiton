@@ -1,6 +1,11 @@
+from datetime import timedelta
+
 from flask import Flask, redirect, url_for, render_template
+from flask import request, session
 
 app = Flask(__name__)
+app.secret_key = '123'
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
 
 
 @app.route('/')
@@ -41,6 +46,33 @@ def tips():
     return render_template('block.html', name=nameMe,
                            hobbies=['Sport', 'Baking', 'travel'])
 
+
+@app.route('/search-and-registration', methods=['GET', 'POST'])
+def assignment9():
+    username = ''
+    loggedIn = ''
+    userEmail = ''
+    search = False
+    usersList = [{'name': 'Avi', 'Email': 'Avi@gmail.com'},
+                 {'name': 'Gabi', 'Email': 'Gabi@gmail.com'}, {'name': 'Tehila', 'Email': 'Tehila@gmail.com'}]
+
+    if request.method == 'GET':
+        if 'name' in request.args:
+            username = request.args['name']
+            search = True
+    if request.method == 'POST':
+        username = request.form['username']
+        session['loggedIn'] = True
+        session['username'] = username
+    return render_template('assignment9.html',
+                           request_methods=request.method,
+                           username=username, loggedIn=loggedIn, users=usersList, userEmail=userEmail, search=search)
+
+@app.route('/Log_out')
+def Log_out():
+    session.pop('username')
+    session['loggedIn'] = False
+    return redirect('/search-and-registration')
 
 if __name__ == '__main__':
     app.run(debug=True)
