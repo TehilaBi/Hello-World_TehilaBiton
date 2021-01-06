@@ -50,7 +50,7 @@ def tips():
 @app.route('/assignment9', methods=['GET', 'POST'])
 def assignment9():
     username = ''
-    loggedIn = ''
+    loggedIn = False
     userEmail = ''
     search = False
     usersList = [{'name': 'Avi', 'Email': 'Avi@gmail.com'},
@@ -68,9 +68,10 @@ def assignment9():
                            request_methods=request.method,
                            username=username, loggedIn=loggedIn, users=usersList, userEmail=userEmail, search=search)
 
+
 @app.route('/Log_out')
 def Log_out():
-    if session['loggedIn'] == True:
+    if session['loggedIn']:
         session.pop('username')
         session['loggedIn'] = False
     return redirect('/assignment9')
