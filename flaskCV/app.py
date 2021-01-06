@@ -70,9 +70,11 @@ def assignment9():
 
 @app.route('/Log_out')
 def Log_out():
-    session.pop('username')
-    session['loggedIn'] = False
+    if session['loggedIn'] == True:
+        session.pop('username')
+        session['loggedIn'] = False
     return redirect('/assignment9')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
