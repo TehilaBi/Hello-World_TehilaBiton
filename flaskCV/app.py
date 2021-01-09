@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from flask import Flask, redirect, render_template,  flash, blueprints
+from flask import Flask, redirect, render_template, flash, blueprints, jsonify
 from flask import request, session
 import mysql.connector
 
@@ -80,6 +80,47 @@ def Log_out():
         session['loggedIn'] = False
     return redirect('/assignment9')
 
+
+def interact_db(query, query_type: str):
+    return_value = False
+    connection = mysql.connector.connect(host='localhost',
+                                         user='root',
+                                        passwd='root',
+                                        database='webcvproject')
+    cursor = connection.cursor(named_tuple=True)
+    cursor.execute(query)
+
+    if query_type == 'commit':
+        connection.commit()
+        return_value = True
+
+    if query_type == 'fetch':
+        query_result = cursor.fetchall()
+        return_value = query_result
+
+    connection.close()
+    cursor.close()
+    return return_value
+
+
+@app.route('/assignment11/users')
+def users():
+    if request.method == 'GET':
+        query = "SELECT * FROM users"
+        query_result = interact_db(query=query, query_type='fetch')
+    return jsonify({'success': 'True', 'data': query_result})
+
+
+@app.route('/assignment11/users/selected', defaults={'user_ID': 123})
+@app.route('/assignment11/users/selected/<user_ID>')
+def specificUser(user_ID):
+    if request.method == 'GET':
+        query = "SELECT * FROM users WHERE ID='%s'" % user_ID
+        query_result = interact_db(query=query, query_type='fetch')
+        if len(query_result) == 0:
+            return jsonify({'success': 'False', 'data': []})
+        else:
+            return jsonify({'success': 'True', 'data': query_result[0]})
 
 
 if __name__ == '__main__':
