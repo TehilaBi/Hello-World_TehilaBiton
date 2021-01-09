@@ -1,11 +1,15 @@
 from datetime import timedelta
 
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, render_template,  flash, blueprints
 from flask import request, session
+import mysql.connector
 
 app = Flask(__name__)
 app.secret_key = '123'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
+
+from assignment10.assignment10 import assignment10
+app.register_blueprint(assignment10)
 
 
 @app.route('/')
@@ -75,6 +79,7 @@ def Log_out():
         session.pop('username')
         session['loggedIn'] = False
     return redirect('/assignment9')
+
 
 
 if __name__ == '__main__':

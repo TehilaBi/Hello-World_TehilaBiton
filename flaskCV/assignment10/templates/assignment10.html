@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Users</title>
+    <link rel="stylesheet" href="{{ url_for('assignment10.static', filename= 'CSS/Ass10.css') }}">
+    <script src={{url_for('assignment10.static', filename='JS/JSAss10.js') }}></script>
+
+</head>
+<body>
+    <div class="container">
+
+        <form action="/assignment10" method="post">
+            <h1> Insert user </h1>
+            <br>
+            <label for="IdUser"><b>ID: </b></label>
+            <input type="text" placeholder="Enter ID"  name="IdUser">
+            <label for="username"><b>Name: </b></label>
+            <input type="text" placeholder="Enter name"  name="username">
+            <label for="emailUser"><b>Email: </b></label>
+            <input type="text" placeholder="Enter Email"  name="emailUser">
+            <input type="submit" onclick="MessBox()">
+        </form>
+
+        <form action="/assignment10" method="get">
+            <h1> Update Email's user </h1>
+            <br>
+            <label for="IdUserUpdate"><b>ID: </b></label>
+            <input type="text" placeholder="Enter ID"  name="IdUserUpdate">
+            <label for="emailUserUpdate"><b> Email: </b></label>
+            <input type="text" placeholder="Enter new Email"  name="emailUserUpdate">
+            <input type="submit" onclick="MessBox()">
+        </form>
+
+        <form action="/assignment10" method="get">
+            <h1> Delete user </h1>
+            <br>
+            <label for="IdUserDelete"><b>ID: </b></label>
+            <input type="text" placeholder="Enter ID"  name="IdUserDelete">
+            <input type="submit" onclick="MessBox()">
+        </form>
+
+
+
+        <h1> Lists of Users: </h1>
+        {% if users %}
+            {% for user in users  %}
+                <li>
+                {{ user.ID }}: <b> {{ user.Name }}</b> ({{ user.Email }})
+                </li>
+            {% endfor %}
+        {% endif %}
+
+    </div>
+</body>
+</html>
