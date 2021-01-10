@@ -56,4 +56,6 @@ def ass10():
         query = "INSERT INTO users(ID, NAME, Email) VALUES ('%s', '%s', '%s')" % (IdUser, username, emailUser)
         interact_db(query, query_type='commit')
 
+    query = "select * from users"
+    query_result = interact_db(query, query_type='fetch')
     return render_template('assignment10.html', users=query_result)
